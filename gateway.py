@@ -13,6 +13,19 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
 
 def serve(host="127.0.0.1", port=19000):
     # TODO 3: abrir socket UDP y escuchar datagramas.
+    socketgateway =  socket(AF_INET, SOCK_STREAM)
+    socketgateway.bind(port)
+    socketgateway.listen(1) #permitimos 1 conexion simultanea
+    while True:
+        print("ready to serve")
+        socketMolinete, addr = socketgateway.accept()  # Aceptar la conexión
+        try:
+            data = decode_message(socketgateway.recv(1024)) #data contiene una tupla?? es decir acks + sec + dicc??
+            
+        except data == None:
+            pass
+            
+            
     # TODO 4: procesar DATA y responder ACK con la misma secuencia.
     # TODO 5: cachear respuesta por (cliente, seq) ante retransmisiones.
     pass
