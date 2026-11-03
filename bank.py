@@ -15,15 +15,15 @@ def reset_state():
 def process_transaction(tx):
     # TODO 1: validar transacción.
     if not validate_transaction(tx):
-        return #{"status": "error", "reason": "Invalid transaction"}
+        return {"status": "error", "reason": "Invalid transaction"}
     # TODO 2: procesar transaction_id como máximo una vez.
     if tx["transaction_id"] in _processed:
-        return #{"status": "error", "reason": "Duplicate transaction"}
+        return {"status": "error", "reason": "Duplicate transaction"}
     # TODO 3: validar tarjeta/saldo y descontar solo si se aprueba.
     if tx["card_id"] not in _balances:
-        return #{"status": "error", "reason": "Card not found"}
+        return {"status": "error", "reason": "Card not found"}
     if _balances[tx["card_id"]] < tx["amount"]:
-        return #{"status": "error", "reason": "Insufficient balance"}
+        return {"status": "error", "reason": "Insufficient balance"}
     _balances[tx["card_id"]] -= tx["amount"]
     # TODO 4: devolver status, reason, balance y duplicate.
     return {"status": "success", "reason": None, "balance": _balances[tx["card_id"]], "duplicate": False}
@@ -31,6 +31,7 @@ def process_transaction(tx):
 class BankHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         # TODO 5: aceptar POST /charge, leer JSON e invocar process_transaction.
+        
         # TODO 6: responder JSON con Content-Type y Content-Length.
         # TODO 7: 404 para rutas desconocidas y 400 para JSON inválido.
         pass

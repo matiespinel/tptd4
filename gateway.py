@@ -13,7 +13,7 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
         return {"status": "error", "message": "Invalid transaction"}
     req = Request(url, data=json.dumps(tx).encode("utf-8"), headers={""}, method="POST")
     # TODO 2: devolver respuesta JSON y manejar errores.
-    """try:
+    try:
         with urlopen(req, timeout=timeout) as response:
             response_data = response.read().decode("utf-8")
             return json.loads(response_data)
@@ -22,7 +22,7 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
     except URLError as e:
         return {"status": "error", "message": f"URL error: {e.reason}"}
     except Exception as e:
-        return {"status": "error", "message": str(e)} """
+        return {"status": "error", "message": str(e)}
 
 def serve(host="127.0.0.1", port=19000):
     # TODO 3: abrir socket UDP y escuchar datagramas.
