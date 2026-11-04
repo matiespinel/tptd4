@@ -31,10 +31,37 @@ def process_transaction(tx):
 class BankHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         # TODO 5: aceptar POST /charge, leer JSON e invocar process_transaction.
+        # TODO 5 y 7: Aceptar exclusivamente /charge y manejar JSON inválido
+        if self.path != "/charge":
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b"Not Found")
+            return
+        try:
+            content_length = int(self.headers.get('Content-Length', 0))
+            post_data = self.rfile.read(content_length)
+            tx = json.loads(post_data.decode('utf-8'))
+        except (json.JSONDecodeError, ValueError):
+            self.send_response(400)
+            self.end_headers()
+            self.wfile.write(b"Invalid JSON")
+            return
         
+        # Invocar la lógica de procesamiento de la transacción
+        result = process_transaction(tx)
+        response_body = json.dumps(result).encode("utf-8")
         # TODO 6: responder JSON con Content-Type y Content-Length.
-        # TODO 7: 404 para rutas desconocidas y 400 para JSON inválido.
-        pass
+        # TODO 7: 404 para rutas desconocidas y 400 para JSON inválido. 
+        self.send_response(200 if result.get("status") == "success" else 400)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(response_body)))
+        self.end_headers()
+        self.wfile.write(response_body)
+        #self.send_response(200)
+        #self.send_header("Content-Type", "application/json")
+        #self.send_header("Content-Length", str(len(json.dumps(result))))
+        #self.end_headers()
+        #self.wfile.write(json.dumps(result).encode('utf-8'))
     def log_message(self, fmt, *args):
         print("[BANK]", fmt % args)
 
