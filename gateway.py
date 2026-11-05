@@ -26,10 +26,9 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
 
 def serve(host="127.0.0.1", port=19000):
     # TODO 3: abrir socket UDP y escuchar datagramas.
-    socketgateway =  socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socketgateway.bind(port)
-    socketgateway.listen(1) #permitimos 1 conexion simultanea, este es el socket de escucha
-    while True:
+    socketgateway =  socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
+    socketgateway.bind((host, port))
+"""    while True:
         print("ready to serve")
         socketMolinete, addr = socketgateway.accept()  # Aceptar la conexión, el socketMolinete es el socket que se va a usar para comunicarse con el molinete, addr es la direccion del molinete
         try:
@@ -50,5 +49,40 @@ def serve(host="127.0.0.1", port=19000):
     except socket.timeout:
         print("timeout")
         socketgateway.close()
+"""
 
+    while True:
+        print("ready to serve")
+        try:
+            # Recibir datagrama y la dirección del cliente
+            packet, addr = sock.recvfrom(1024)
+            data = decode_message(packet)
+            
+            if data is None:
+                continue
+                
+            # data contiene el diccionario con la transacción, sec y ack
+            seq = data.get("seq")
+            client_key = (addr, seq)
+            
+            # TODO 5: cachear respuesta por (cliente, seq) ante retransmisiones.
+            if client_key in cache:
+                response = cache[client_key]
+            else:
+                # TODO 4: procesar DATA y responder ACK con la misma secuencia.
+                # Aquí procesarías la transacción según tu lógica de negocio
+                response_data = {
+                    "status": "success",
+                    "reason": None,
+                    "ack": data.get("ack", True),
+                    "seq": seq
+                }
+                response = encode_message(response_data)
+                cache[client_key] = response
+            
+            # Enviar respuesta al cliente mediante UDP
+            sock.sendto(response, addr)
+            
+        except Exception as e:
+            print(f"[ERROR] {e}")
 if __name__ == "__main__": serve()
