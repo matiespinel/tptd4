@@ -11,7 +11,12 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
     # TODO 1: validar y enviar POST HTTP al banco.
     if not validate_transaction(tx):
         return {"status": "error", "message": "Invalid transaction"}
-    req = Request(url, data=json.dumps(tx).encode("utf-8"), headers={""}, method="POST")
+    req = Request(
+        url, 
+        data=json.dumps(tx).encode("utf-8"), 
+        headers={"Content-Type": "application/json"}, 
+        method="POST"
+    )
     # TODO 2: devolver respuesta JSON y manejar errores.
     try:
         with urlopen(req, timeout=timeout) as response:
@@ -26,61 +31,40 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
 
 def serve(host="127.0.0.1", port=19000):
     # TODO 3: abrir socket UDP y escuchar datagramas.
-    socketgateway =  socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
-    socketgateway.bind((host, port))
-"""    while True:
-        print("ready to serve")
-        socketMolinete, addr = socketgateway.accept()  # Aceptar la conexión, el socketMolinete es el socket que se va a usar para comunicarse con el molinete, addr es la direccion del molinete
-        try:
-            data = decode_message(socketMolinete.recv(1024)) 
-            break
-        except data == None:
-            pass
-            
-    #data contiene el diccionario con la transaccion, sec y ack       
-    # TODO 4: procesar DATA y responder ACK con la misma secuencia.
-    socketMolinete.sendto(encode_message({"ack": data["ack"], "seq": data["seq"]}), addr)    
-    # TODO 5: cachear respuesta por (cliente, seq) ante retransmisiones.
-    socketMolinete.close() #cerramos el socket que se usa para comunicarse con el molinete, el socket de escucha sigue abierto
-    socketgateway.listen(1)
-    socketgateway.settimeout(10) #10?? la verdad no tengo idea cuanto tarda 
-    try :
-        serve()      
-    except socket.timeout:
-        print("timeout")
-        socketgateway.close()
-"""
-
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
+    sock.bind((host, port))  # bind requiere una tupla (host, puerto)
+    
+    # Cache para retransmisiones: clave (cliente_addr, seq) -> respuesta codificada
+    cache = {}
+    
+    print(f"Servidor UDP escuchando en {host}:{port}")
+    
     while True:
         print("ready to serve")
         try:
-            # Recibir datagrama y la dirección del cliente
             packet, addr = sock.recvfrom(1024)
             data = decode_message(packet)
             
             if data is None:
                 continue
                 
-            # data contiene el diccionario con la transacción, sec y ack
             seq = data.get("seq")
             client_key = (addr, seq)
             
-            # TODO 5: cachear respuesta por (cliente, seq) ante retransmisiones.
             if client_key in cache:
                 response = cache[client_key]
             else:
-                # TODO 4: procesar DATA y responder ACK con la misma secuencia.
-                # Aquí procesarías la transacción según tu lógica de negocio
+                # INVOCAR AL BANCO REALMENTE
+                bank_result = charge_bank(data)
+                
+                # Construir la respuesta estructurada con la secuencia correspondiente
                 response_data = {
-                    "status": "success",
-                    "reason": None,
-                    "ack": data.get("ack", True),
-                    "seq": seq
+                    "seq": seq,
+                    **bank_result
                 }
                 response = encode_message(response_data)
                 cache[client_key] = response
             
-            # Enviar respuesta al cliente mediante UDP
             sock.sendto(response, addr)
             
         except Exception as e:

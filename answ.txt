@@ -1,0 +1,131 @@
+PS C:\Users\usuario\OneDrive\Documentos\tptd4> python gateway.py   
+Servidor UDP escuchando en 127.0.0.1:19000
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+ready to serve
+PS C:\Users\usuario\OneDrive\Documentos\tptd4> python bank.py      
+Banco HTTP escuchando en http://127.0.0.1:18080
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 200 -
+[BANK] "POST /charge HTTP/1.1" 400 -
+[BANK] "POST /charge HTTP/1.1" 400 -
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'ecde386d-66ac-4557-a564-9feab638516c', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'f991b5bd-c5db-40cc-b264-705a3758558a', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '306d27f5-83b4-462d-9185-2ff2ae5b76da', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '2337a72a-936e-492f-a08b-d39ca13c4bfe', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '7f3d512a-3223-4b32-91f8-9177fcce1ad7', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '17d3041a-34e1-4956-97e8-654c795a1825', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'e3452a98-b06a-4e5f-b058-313ce074a3d0', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '7549cb7d-7c55-4cf1-8c51-62a453652d35', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '1304c78b-7f25-4614-ba67-7023aac15012', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'b5dc7c1b-11f7-45be-a2ec-4ad9b1da0dfe', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '0c43e6e3-b0c7-4df8-b6c9-10d432cca45d', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'bc3bf113-a0ca-4526-a716-57739e2a8d2c', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '6a36b3c0-df9c-40c5-97be-bfda9c8f9a1e', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '686c3ca2-5b07-4b90-ada8-e5f4f4fd97b6', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'b674606e-1037-431b-8ffb-f39ce931f036', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '261fe8f6-e564-47ce-9812-dbc216bb56f7', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': 'f5a645d7-9981-4ac7-b489-a5f2df17b2c7', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4>  python turnstile.py
+Grafo generado: {'Medrano': {'Carlos Gardel': 2, 'Ángel Gallardo': 1, 'Malabia': 4}, 'Carlos Gardel': {'Medrano': 2, 'Pueyrredón': 2, 'Ángel Gallardo': 6}, 'Pueyrredón': {'Carlos Gardel': 2, 'Callao': 3,'Diagonal Norte': 7}, 'Callao': {'Pueyrredón': 3, 'Diagonal Norte': 5, 'Retiro': 5}, 'Ángel Gallardo': {'Medrano': 1, 'Malabia': 10, 'Carlos Gardel': 6}, 'Malabia': {'Ángel Gallardo': 10, 'Dorrego': 10, 'Medrano': 4}, 'Dorrego': {'Malabia': 10, 'Federico Lacroze': 1, 'Retiro': 10}, 'Federico Lacroze': {'Dorrego': 1, 'Retiro': 3}, 'Diagonal Norte': {'Callao': 5, 'Retiro': 7, 'Pueyrredón': 7}, 'Retiro': {'Diagonal Norte': 7, 'Federico Lacroze': 3, 'Callao': 5, 'Dorrego': 10}}
+Distancias desde Medrano: {'Medrano': 0, 'Carlos Gardel': 2, 'Pueyrredón': 4, 'Callao': 7, 'Ángel Gallardo': 1, 'Malabia': 4, 'Dorrego': 14, 'Federico Lacroze': 15, 'Diagonal Norte': 11, 'Retiro': 12}
+Transacción: {'transaction_id': '3d2108c3-8bb1-45f9-9294-9b015845ebd6', 'card_id': 'SUBE-001', 'amount': 100, 'station': 'Medrano', 'header': 'Retiro'}
+Respuesta: True
+PS C:\Users\usuario\OneDrive\Documentos\tptd4> 

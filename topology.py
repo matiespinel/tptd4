@@ -1,6 +1,7 @@
 
 import random
 import copy
+from routing import dijkstra
 
 
 BASE_GRAPH = {
@@ -121,3 +122,5 @@ def build_topology(seed):
 # TODO: Generar el grafo utilizando build_topology()
 # y la seed asignada al grupo.
 GRAPH = build_topology(seed=2)  # Reemplaza 12345 con la seed de tu grupo
+print("Grafo generado:", GRAPH)
+print("Distancias desde Medrano:", dijkstra(GRAPH, "Medrano"))

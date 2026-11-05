@@ -29,58 +29,48 @@ def send_reliably(address, payload, seq=1, timeout=0.5, max_retries=3, sock=None
     
     # TODO 6: cerrar solo el socket creado por esta función.
     """
-    # TODO 1: Crear socket solo si sock es None.
+    
     own = False
     if sock is None:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
+        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         own = True
 
-    #timeout del socket para controlar la espera del ACK
     sock.settimeout(timeout)
 
-    # Preparar el paquete DATA con el número de secuencia y el payload
-    
-    payload_bytes = payload.encode('utf-8')
-   
-
-    # Definir el formato del mensaje DATA y el ACK esperado
-    # Ejemplo de protocolo simple basado en texto/bytes, aca una vez decodificado el msje y formateado como dict, ack y seq son campos del diccionario
-    data_packet = f"DATA:{seq}:".encode('utf-8') + payload_bytes
-    expected_ack = f"ACK:{seq}".encode('utf-8')
+    # Adjuntamos el número de secuencia al payload para que el servidor lo reconozca
+    message = {
+        "seq": seq,
+        **payload
+    }
+    data_packet = encode_message(message)
 
     success = False
     attempts = 0
 
-    # TODO 4: Retransmitir al vencer timeout, hasta max_retries.
     while attempts <= max_retries:
         try:
-            # TODO 2: Enviar DATA con seq y payload.
             sock.sendto(data_packet, address)
             
-            # TODO 3 y TODO 5: Esperar ACK de la misma secuencia e ignorar mensajes inválidos.
             while True:
-                response, _ = sock.recvfrom(1024)
+                response_bytes, _ = sock.recvfrom(1024)
+                response_data = decode_message(response_bytes)
                 
-                # Si recibimos el ACK correcto para esta secuencia, salimos del ciclo de espera
-                if response == expected_ack:
+                # Verificamos que sea un diccionario y responda a la misma secuencia
+                if response_data and response_data.get("seq") == seq:
                     success = True
+                    # Guardamos la respuesta en el socket o la retornamos según se requiera
                     break
                 else:
-                    # Ignorar mensajes inválidos, duplicados o ACKs de otras secuencias
                     continue
                     
             if success:
                 break
                 
         except socket.timeout:
-            # Se venció el timeout sin recibir el ACK esperado
             attempts += 1
             if attempts > max_retries:
-                # Se agotaron los reintentos permitidos
                 break
-            # El bucle continuará para retransmitir el paquete
 
-    # TODO 6: Cerrar solo el socket creado por esta función.
     if own:
         sock.close()
 
