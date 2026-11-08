@@ -18,7 +18,7 @@ def process_transaction(tx):
         return {"status": "error", "reason": "Invalid transaction"}
     # TODO 2: procesar transaction_id como máximo una vez.
     if tx["transaction_id"] in _processed:
-        return {"status": "error", "reason": "Duplicate transaction"}
+        return {"status": "error", "reason": "Duplicate transaction"} #como transaction_id ya fue procesado, devolvemos error de duplicado 
     # TODO 3: validar tarjeta/saldo y descontar solo si se aprueba.
     if tx["card_id"] not in _balances:
         return {"status": "error", "reason": "Card not found"}

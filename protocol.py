@@ -16,12 +16,11 @@ def decode_message(data):
     # TODO 1: decodificar JSON y verificar que sea un diccionario.
     data = data.decode("utf-8")
     #ahora data es un string, lo parseamos a dict
-    data = json.loads(data) #.loads se encarga de hacerlo un diccionario devuelta?
+    data = json.loads(data) #.loads se encarga de hacerlo un diccionario devuelta
     if not isinstance(data, dict):
         return None
     return data
     
-    pass
 
 def validate_transaction(tx):
     # TODO 2: verificar campos requeridos, tipos y monto estrictamente positivo.

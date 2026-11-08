@@ -16,11 +16,11 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
         data=json.dumps(tx).encode("utf-8"), 
         headers={"Content-Type": "application/json"}, 
         method="POST"
-    )
+    ) #aramos la solicitud HTTP POST con el JSON de la transacción y el encabezado Content-Type adecuado.
     # TODO 2: devolver respuesta JSON y manejar errores.
     try:
-        with urlopen(req, timeout=timeout) as response:
-            response_data = response.read().decode("utf-8")
+        with urlopen(req, timeout=timeout) as response: #hacemos la solicitud y esperamos la respuesta, con un tiempo de espera definido.
+            response_data = response.read().decode("utf-8") #leemos la respuesta y la decodificamos de bytes a string
             return json.loads(response_data)
     except HTTPError as e:
         return {"status": "error", "message": f"HTTP error: {e.code}"}
@@ -29,13 +29,14 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-def serve(host="127.0.0.1", port=19000):
+def serve(host="127.0.0.1", port=19000, simulate_loss=None):
     # TODO 3: abrir socket UDP y escuchar datagramas.
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
     sock.bind((host, port))  # bind requiere una tupla (host, puerto)
     
     # Cache para retransmisiones: clave (cliente_addr, seq) -> respuesta codificada
     cache = {}
+    ack_attempts = {}
     
     print(f"Servidor UDP escuchando en {host}:{port}")
     
@@ -51,6 +52,7 @@ def serve(host="127.0.0.1", port=19000):
             seq = data.get("seq")
             client_key = (addr, seq)
             
+            ack_attempts[client_key] = ack_attempts.get(client_key, 0) + 1 #si no existe la clave, la inicializamos en 0 y le sumamos 1. Si ya existe, le sumamos 1.
             if client_key in cache:
                 response = cache[client_key]
             else:
@@ -65,8 +67,19 @@ def serve(host="127.0.0.1", port=19000):
                 response = encode_message(response_data)
                 cache[client_key] = response
             
-            sock.sendto(response, addr)
+            # SIMULACIÓN DE PÉRDIDA DE ACK:
+            # Evaluamos si debemos enviar el ACK o descartarlo
+            debe_enviar_ack = True
+            if simulate_loss == "ack" and ack_attempts[client_key] == 1:
+                print(f"[SIMULACIÓN] ACK para seq={seq} generado pero descartado intencionalmente (no se envía).")
+                debe_enviar_ack = False
+            
+            # El sendto ahora está protegido por la bandera y el flujo del servidor no se rompe
+            if debe_enviar_ack:
+                sock.sendto(response, addr)
             
         except Exception as e:
             print(f"[ERROR] {e}")
-if __name__ == "__main__": serve()
+
+#en caso de simular perdida de ack, se descarta el primer ACK generado para cada secuencia, pero el servidor sigue funcionando y puede recibir retransmisiones del cliente.
+if __name__ == "__main__": serve(simulate_loss="ack")  # Cambiar a "ack" para simular pérdida de ACK, o "data" para simular pérdida de DATA
