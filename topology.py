@@ -1,7 +1,7 @@
 
 import random
 import copy
-from routing import dijkstra
+from routing import dijkstra, shortest_path
 
 
 BASE_GRAPH = {
@@ -124,3 +124,4 @@ def build_topology(seed):
 GRAPH = build_topology(seed=2)  # Reemplaza 12345 con la seed de tu grupo
 print("Grafo generado:", GRAPH)
 print("Distancias desde Medrano:", dijkstra(GRAPH, "Medrano"))
+print("medrano a lacrose", shortest_path(GRAPH, "Medrano", "Federico Lacroze"))

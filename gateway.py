@@ -29,7 +29,7 @@ def charge_bank(tx, url=BANK_URL, timeout=2.0):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-def serve(host="127.0.0.1", port=19000, simulate_loss=None):
+def serve(host="0.0.0.0", port=19000, simulate_loss=None):
     # TODO 3: abrir socket UDP y escuchar datagramas.
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #inicializamos el socket UDP
     sock.bind((host, port))  # bind requiere una tupla (host, puerto)

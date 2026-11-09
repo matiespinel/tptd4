@@ -31,6 +31,7 @@ def build_transaction(card_id, amount, station):
         "amount": amount,
         "station": station,
         "header": cabecera_elegida,
+        "route": shortest_path(GRAPH, station, cabecera_elegida)
     }
     return transaction
     

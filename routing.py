@@ -14,6 +14,7 @@ def dijkstra(graph, source):
                 
     # TODO 2: inicializar distancias y cola de prioridad.
     distancias = {estacion: float('inf') for estacion in graph}
+    predecesores = {estacion: None for estacion in graph}
     distancias[source] = 0
     
     # Cola de prioridad: almacena tuplas (distancia, nodo)
@@ -34,29 +35,39 @@ def dijkstra(graph, source):
             # Si encontramos un camino más corto hacia el vecino
             if distancia < distancias[vecino]:
                 distancias[vecino] = distancia
+                predecesores[vecino] = nodo_actual
                 heapq.heappush(cola, (distancia, vecino))
                 
-    return distancias
+    return distancias, predecesores
     
 
 def shortest_path(graph, source, target):
     # TODO 4: implementar Dijkstra guardando predecesores.
-    distancias = dijkstra(graph, source)
+    distancias, predecesores = dijkstra(graph, source)
     #esto me devuelve un diccionario con las distancias más cortas desde el nodo source a todos los demás nodos alcanzables en el grafo.
     if distancias is None or target not in distancias or distancias[target] == float('inf'):
         return []  # No hay ruta disponible
     # TODO 5: reconstruir la ruta; devolver [] si no hay ruta.
     ruta = []
     nodo_actual = target
-    while nodo_actual != source:
+    while nodo_actual is not None:
         ruta.append(nodo_actual)
-        # Encontrar el predecesor del nodo actual
-        for vecino, peso in graph[nodo_actual].items():
-            if distancias[nodo_actual] == distancias[vecino] + peso:
-                nodo_actual = vecino
-                break
-    ruta.append(source)
-    ruta.reverse()
+        nodo_actual = predecesores[nodo_actual]
+        
+    ruta.reverse()  # Invertimos para que vaya de source a target
+    
+    # Verificamos que la ruta comience realmente en el source
+    if not ruta or ruta[0] != source:
+        return []
+    
     return ruta
     
- 
+""" while nodo_actual != source:
+         ruta.append(nodo_actual)
+         # Encontrar el predecesor del nodo actual
+         for vecino, peso in graph[nodo_actual].items():
+             if distancias[nodo_actual] == distancias[vecino] + peso:
+                 nodo_actual = vecino
+                 break
+     ruta.append(source)
+     ruta.reverse() """

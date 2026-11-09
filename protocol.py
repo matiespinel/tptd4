@@ -9,7 +9,6 @@ def encode_message(message):
         "amount": amount,
         "station": station,
         "header": cabecera_elegida,
-        "ack": ack, #agregado para que el gateway pueda responder con el mismo ack
         "seq": seq #agregado para que el gateway pueda responder con la misma secuencia
     }""" 
 def decode_message(data):
@@ -25,10 +24,16 @@ def decode_message(data):
 def validate_transaction(tx):
     # TODO 2: verificar campos requeridos, tipos y monto estrictamente positivo.
     # transaction_id, card_id, amount, station, route
-    tx_required_fields = ["transaction_id", "card_id", "amount", "station"]
+    tx_required_fields = ["transaction_id", "card_id", "amount", "station", "header", "route"]
     for field in tx_required_fields:
         if field not in tx:
             return False
-        if tx[field] is None or (field == "amount" and (not isinstance(tx[field], (int, float)) or tx[field] <= 0)): #habria que verificar que la estacion y cabecera sean strings, no vacios y que existan en la red y que los id's de transaccion y tarjeta sean ints?
+        if tx[field] is None:
             return False
+            
+    # Validaciones específicas por tipo
+    if not isinstance(tx["amount"], (int, float)) or tx["amount"] <= 0:
+        return False
+    if not isinstance(tx["route"], list) or len(tx["route"]) == 0:
+        return False
     return True

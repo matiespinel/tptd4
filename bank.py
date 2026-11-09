@@ -17,22 +17,25 @@ def process_transaction(tx):
     if not validate_transaction(tx):
         return {"status": "error", "reason": "Invalid transaction"}
     # TODO 2: procesar transaction_id como máximo una vez.
-    if tx["transaction_id"] in _processed:
-        return {"status": "error", "reason": "Duplicate transaction"} #como transaction_id ya fue procesado, devolvemos error de duplicado 
-    # TODO 3: validar tarjeta/saldo y descontar solo si se aprueba.
-    if tx["card_id"] not in _balances:
-        return {"status": "error", "reason": "Card not found"}
-    if _balances[tx["card_id"]] < tx["amount"]:
-        return {"status": "error", "reason": "Insufficient balance"}
-    _balances[tx["card_id"]] -= tx["amount"]
-    # TODO 4: devolver status, reason, balance y duplicate.
+    with _lock:
+        if tx["transaction_id"] in _processed:
+            return {"status": "error", "reason": "Duplicate transaction"} #como transaction_id ya fue procesado, devolvemos error de duplicado 
+        # TODO 3: validar tarjeta/saldo y descontar solo si se aprueba.
+        if tx["card_id"] not in _balances:
+            return {"status": "error", "reason": "Card not found"}
+        # Guardamos el id en el diccionario de procesados para futuras retransmisiones
+        if _balances[tx["card_id"]] < tx["amount"]:
+            return {"status": "error", "reason": "Insufficient balance"}
+        _balances[tx["card_id"]] -= tx["amount"]
+        _processed[tx["transaction_id"]] = True
+        # TODO 4: devolver status, reason, balance y duplicate.
     return {"status": "success", "reason": None, "balance": _balances[tx["card_id"]], "duplicate": False}
 
 class BankHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         # TODO 5: aceptar POST /charge, leer JSON e invocar process_transaction.
         # TODO 5 y 7: Aceptar exclusivamente /charge y manejar JSON inválido
-        if self.path != "/charge":
+        if self.path != "/charge": #si ruta incorrecta, devolvemos 404
             self.send_response(404)
             self.end_headers()
             self.wfile.write(b"Not Found")
@@ -57,15 +60,11 @@ class BankHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(response_body)))
         self.end_headers()
         self.wfile.write(response_body)
-        #self.send_response(200)
-        #self.send_header("Content-Type", "application/json")
-        #self.send_header("Content-Length", str(len(json.dumps(result))))
-        #self.end_headers()
-        #self.wfile.write(json.dumps(result).encode('utf-8'))
+        
     def log_message(self, fmt, *args):
         print("[BANK]", fmt % args)
 
-def run_server(host="127.0.0.1", port=18080):
+def run_server(host="0.0.0.0", port=18080):
     server = HTTPServer((host, port), BankHandler)
     print(f"Banco HTTP escuchando en http://{host}:{port}")
     try: server.serve_forever()
